@@ -16,9 +16,10 @@ Computer vision for handwritten signature detection in pictures
 
 The aim of this (learning) project is to classify pictures of (administrative) documents as **signed vs. not signed**:
 <div align = "center">
-<img width = "200" src = /assets/readme_img/signed.tif alt="Signed doc">
-<img width = "200" src = /assets/readme_img/unsigned.tif alt="Unsigned doc">
+<img width = "200" src = /assets/readme_img/signed.jpg alt="Signed doc">
+<img width = "200" src = /assets/readme_img/unsigned.jpg alt="Unsigned doc">
 </div>
+
 The document on the left is handwritten signed while the one on the right is not.
 
 ### Data source and structure
