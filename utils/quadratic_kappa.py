@@ -1,7 +1,45 @@
 import numpy as np
+import pandas as pd
 from sklearn.metrics import cohen_kappa_score, confusion_matrix
-from utils.opencv_test import dataframe_train
+from utils.link_tif_xml import extract_xml
 import time
+import os
+
+from tensorflow import keras
+import tensorflow as tf
+import numpy as np
+
+
+model = keras.models.load_model('models/model3')
+img_height = 168
+img_width = 128
+class_names = ['0', '1']
+
+def dataframe_train():
+    """
+    Builds the dataframe having the pred value of the target from .tif files.
+    The target is the presence (target = 1) or absence (target = 0) of signature(s) in the .tif files.
+    :return: a dataframe with 2 columns: id, Expected (0 if none or 1 if at least one)
+    """
+    df = pd.DataFrame(columns=["Id", "y_true", "y_pred"])
+    for filename in os.listdir('data/train_jpg/'):
+        Id = os.path.basename(filename).split('.')[0]  # name of file
+        res1 = extract_xml(fileId=Id)*1.0
+        img = tf.keras.utils.load_img(
+            'data/train_jpg/' + filename, target_size=(img_height, img_width)
+        )
+        img_array = tf.keras.utils.img_to_array(img)
+        img_array = tf.expand_dims(img_array, 0)  # Create a batch
+
+        predictions = model.predict(img_array)
+        score = tf.nn.softmax(predictions[0])
+        res2 = int(class_names[np.argmax(score)])*1.0
+
+        data = [Id, res1, res2]
+        df.loc[len(df)] = data
+    confus_matrix = confusion_matrix(df['y_true'], df['y_pred'])
+    print(confus_matrix)
+    return df
 
 
 tic = time.perf_counter()
