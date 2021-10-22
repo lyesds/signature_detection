@@ -28,12 +28,15 @@ The images used to build this project are available [here](https://drive.google.
 Please grab these assets and extract them in the root directory.
 ```
 .
+├── assets
+|   ├── readme_img
 ├── data
 |   ├── test
 |   └── train
 |   └── train_xml
 ├── utils
 ├── .gitignore
+├── requirements.txt
 └── README.md
 ```
 ### Solutions
