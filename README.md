@@ -8,7 +8,7 @@ Computer vision for handwritten signature detection in pictures
 <p align="center">
   <a href="#the-project">Project</a> •
   <a href="#data-source-and-structure">Data source and structure</a> •
-  <a href="#our-solutions">Solutions</a> •
+  <a href="#solutions">Solutions</a> •
   <a href="#how-to-use">How to use</a>
 </p>
 
@@ -43,13 +43,17 @@ This first approach consists in putting constraints on the conoutrs found in eac
 A handwritten signature should form a contour that is neither too small nor too large (relatively to the document size). Most of the signatures tend to take more space horizontally than vertically.
 And the extent of the signature in its bounding box is smaller than typographed text.
 
-We found that some constraints allow to reach a kappa score of 54% (see ```òpencv_model`.py```).
+We found that some constraints allow to reach a kappa score of 54% (see ```opencv_model.py```).
 
 #### 2. Convolutional neural network (CNN) 
 This second approach consists in a convolutional neural network. Images from train dataset are separated between 2 classes: signed and unsigned,
 and a neural network is trained to binary classify them.
 
-The best kappa score obtained with one of these models is 57%.
+The best kappa score obtained with one of these models is 57% which is probably insufficient for a CNN.
+
+This model should be reviewed in its:
+- architecture: layers and their parameters, and
+- the data it trains on: for instance, replace the full raw data images by cropped ones on the regions where signatures may be located...
 
 ### How to use
 
