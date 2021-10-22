@@ -24,7 +24,7 @@ The document on the left is handwritten signed while the one on the right is not
 
 ### Data source and structure
 
-The images used to build this project are available [here]().
+The images used to build this project are available [here](https://drive.google.com/file/d/10v0ifdbYqOKhrVKU9aaZAvcH-fcQiUSy/view?usp=sharing).
 Please grab these assets and extract them in the root directory.
 ```
 .
@@ -34,7 +34,6 @@ Please grab these assets and extract them in the root directory.
 |   └── train_xml
 ├── utils
 ├── .gitignore
-├── main.py
 └── README.md
 ```
 ### Solutions
@@ -44,10 +43,13 @@ This first approach consists in putting constraints on the conoutrs found in eac
 A handwritten signature should form a contour that is neither too small nor too large (relatively to the document size). Most of the signatures tend to take more space horizontally than vertically.
 And the extent of the signature in its bounding box is smaller than typographed text.
 
-We found that these constraints allow to reach a kappa score of 50%.
+We found that some constraints allow to reach a kappa score of 54% (see ```òpencv_model`.py```).
 
 #### 2. Convolutional neural network (CNN) 
-This second approach consists in ...
+This second approach consists in a convolutional neural network. Images from train dataset are separated between 2 classes: signed and unsigned,
+and a neural network is trained to binary classify them.
+
+The best kappa score obtained with one of these models is 57%.
 
 ### How to use
 
@@ -64,7 +66,7 @@ $ cd signature_detection
 $ pip install requirements.txt
 
 # Run the main.py script
-$ python run main.py
+$ python run opencv_model.py
 ```
 
 
