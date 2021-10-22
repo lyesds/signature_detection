@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from utils.opencv_test import contours_model
+from utils.opencv_model import contours_model
 from tensorflow import keras
 import tensorflow as tf
 import numpy as np
